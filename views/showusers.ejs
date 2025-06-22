@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users data</title>
+    <style>
+        table, tr, td {
+            border: 1px solid black;
+        }
+       
+    /* General Styles */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        text-align: center;
+        padding: 50px;
+    }
+
+    h2 {
+        color: #333;
+    }
+
+    /* Form Styling */
+    form {
+        background: #ffffff;
+        padding: 20px;
+        width: 350px; /* Increased width */
+        margin: auto;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    input {
+        width: 100%;
+        padding: 12px; /* Increased padding */
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    /* ID Field - Extra Space */
+    input[name="id"] {
+        font-size: 18px; /* Larger font size */
+        padding: 15px; /* More space */
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    button:hover {
+        background-color: #218838;
+    }
+
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Email</th>
+            <th>Username</th>
+        </tr>
+        <% for(user of users) { %>
+        <tr>
+            <td><%= user.id %></td>
+            <td><%= user.email %></td>
+            <td><%= user.username %></td>
+            <td>
+                <form method="GET" action="/user/<%= user.id %>/edit">
+                    <button>Edit username</button>
+                </form>
+            </td>
+            <td>
+                <form method="GET" action="/user/<%= user.id %>/delete">
+                    <button>Delete user</button>
+                </form>
+            </td>
+        </tr>
+        <% } %>
+    </table>
+    <form method="GET" action="/user/addnewuser">
+                    <button>Add new User</button>
+    </form>
+    <form method="GET" action="/">
+        <button>Go to home page</button>
+    </form>
+</body>
+</html>
